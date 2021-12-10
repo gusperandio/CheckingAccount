@@ -134,21 +134,33 @@ WHILE (SELECT count(*) FROM  #temp WHERE VALOR_DEBITO IS NULL) <= @qtde
 										@destino, 
 										@idDesp, 
 										@faturado
+							
+							insert into #lancamentoCotista(ID_COTISTA, DATA_LANCAMENTO, VALOR_CREDITO, VALOR_DEBITO, OBS, ID_MOEDA_LANCAMENTO, ORIGEM, DESTINO,ID_DESPESA, FATURADO)
+									Select @cur_IdCotista,
+											@cur_DtLancamento,
+											@cur_VlrCredtio,	
+											@cur_ValorDebito,
+											@cur_Obs,
+											@cur_IdMoeda,
+											@cur_Origem,	
+											@cur_Destino,
+											@cur_IdDespesa,
+											@cur_Faturado
 
-								set @validaCredito = 1;							
+								set @validaCredito = 2;							
 						end	
 
 
 				fetch next from cursor_credito	into @cur_IdCotista,
-														 @cur_DtLancamento,
-														 @cur_VlrCredtio,	
-														 @cur_ValorDebito,
-														 @cur_Obs,
-														 @cur_IdMoeda,
-														 @cur_Origem,	
-														 @cur_Destino,
-														 @cur_IdDespesa,
-														 @cur_Faturado
+														@cur_DtLancamento,
+														@cur_VlrCredtio,	
+														@cur_ValorDebito,
+														@cur_Obs,
+														@cur_IdMoeda,
+														@cur_Origem,	
+														@cur_Destino,
+														@cur_IdDespesa,
+														@cur_Faturado
 
 		end
 
